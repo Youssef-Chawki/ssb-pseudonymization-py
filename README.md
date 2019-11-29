@@ -1,7 +1,8 @@
 # SSB Pseudonymization Functions
 > Data pseudonymization functions used by Statistics Norway (SSB)
 
-[![Latest PyPI version][https://img.shields.io/pypi/v/ssb-pseudonymization.svg][https://pypi.python.org/pypi/ssb-pseudonymization]
+[![PyPi version](https://pypip.in/v/ssb-pseudonymization/badge.png)](https://crate.io/packages/sb-pseudonymization/)
+[![PyPi downloads](https://pypip.in/d/ssb-pseudonymization/badge.png)](https://crate.io/packages/sb-pseudonymization/)
 
 Pseudonymization is a data management and de-identification procedure by which personally identifiable information fields within a data record are replaced by one or more artificial identifiers, or pseudonyms. A single pseudonym for each replaced field or collection of replaced fields makes the data record less identifiable while remaining suitable for data analysis and data processing.
 
@@ -17,7 +18,7 @@ pip install ssb-pseudonymization
 This is a code libary that you import into your existing code, like so:
 
 ```python
-import pseudop_fpe from ssb_pseudonymization
+from ssb_pseudonymization import pseudo_func
 ```
 
 
