@@ -31,6 +31,7 @@ release-test: ## Release a new version, uploading it to PyPI Test
 
 .PHONY: release
 release: ## Release a new version, uploading it to PyPI
+	@make release-validate
 	twine upload dist/*
 
 .PHONY: bump-version-patch
