@@ -8,19 +8,19 @@
 
 Pseudonymization is a data management and de-identification procedure by which personally identifiable information fields within a data record are replaced by one or more artificial identifiers, or pseudonyms. A single pseudonym for each replaced field or collection of replaced fields makes the data record less identifiable while remaining suitable for data analysis and data processing.
 
-It is important to note that pseudonymization is not the same as _anonymization_. While pseudonymization targets directly identifying elements, the real information might still be identifiable e.g. by using inherent information such as correlation between data elements. Thus, senisitive data that has been pseudonomized using the functions in this library should still be regarded as sensitive.
+This lib contains functions that can be used to implement data pseudonymization. In SSB we're invoking these
+functions within our Spark data management platform, by wrapping the lib as [UDFs](https://jaceklaskowski.gitbooks.io/mastering-spark-sql/spark-sql-udfs.html).
+
+It is important to note that pseudonymization is not the same as _anonymization_. While pseudonymization targets directly identifying elements, the real information might still be identifiable e.g. by using inherent information such as correlation between data elements. Thus, sensitive data that has been pseudonomized using the functions in this library should still be regarded as sensitive.
+
+The library is currently in a "pre-alpha" stage. We're currently experimenting with the architecture
+related to how and when psedonymization is being applied in our data management platform. Also, currently there are only a few and simplistic functions in this library. Breaking changes should be expected.
 
 
 ## Installation
 
 ```python
 pip install ssb-pseudonymization
-```
-
-This is a code libary that you import into your existing code, like so:
-
-```python
-from ssb_pseudonymization import pseudo_func
 ```
 
 
@@ -60,7 +60,7 @@ p = pseudo_func.invoke(func_config_json, "Ken sent me")
 Notice that the config must be a json string and you must specify
 the function in config (`func='...'`).
 
-For more examples and usage, have a look at the tests.
+For more examples and usage, have a look at the [tests](https://github.com/statisticsnorway/ssb-pseudonymization-py/tree/master/tests).
 
 
 ## Development setup
@@ -71,6 +71,7 @@ Run `make help` to see common development commands.
 install-build-tools            Install required tools for build/dev
 build                          Build dist
 test                           Run tests
+clean                          Clean all build artifacts
 release-validate               Validate that a distribution will render properly on PyPI
 release-test                   Release a new version, uploading it to PyPI Test
 release                        Release a new version, uploading it to PyPI
@@ -81,12 +82,25 @@ bump-version-minor             Bump minor version, e.g. 0.0.1 -> 0.1.0
 Refer to the `Makefile` to see details about the different tasks.
 
 
+### Testing
+
+Run tests for all python distributions using
+```sh
+make test
+```
+
+This will require that your dev machine has the required python distributions installed locally.
+(You can install python distributions using [pyenv](https://realpython.com/intro-to-pyenv/).)
+
+
 ## Releasing
 
 *Prerequisites:*
 You will need to register accounts on [PyPI](https://pypi.org/account/register/) and [TestPyPI](https://test.pypi.org/account/register/).
 
 Before releasing, make sure you're working on a "new" version number. You can bump the version using the [bumpversion tool](https://medium.com/@williamhayes/versioning-using-bumpversion-4d13c914e9b8).
+
+Also, make sure to update release notes.
 
 To release and publish a new version to PyPI:
 ```sh
@@ -113,6 +127,8 @@ You should see the new release appearing [here](https://pypi.org/project/ssb-pse
 
 * 0.0.1
     * Initial version with "Mickey Mouse" pseudo functions
+* 0.0.2
+    * Improve docs
 
 
 ## Meta
