@@ -18,7 +18,7 @@ DEPENDENCIES = [
 
 setup(
     name="ssb-pseudonymization",
-    version="0.0.1",
+    version="0.0.2",
     url="https://github.com/statisticsnorway/ssb-pseudonymization-py",
     license='MIT',
 
