@@ -1,8 +1,10 @@
 # SSB Pseudonymization Functions
 > Data pseudonymization functions used by Statistics Norway (SSB)
 
-[![PyPi version](https://pypip.in/v/ssb-pseudonymization/badge.png)](https://crate.io/packages/sb-pseudonymization/)
-[![PyPi downloads](https://pypip.in/d/ssb-pseudonymization/badge.png)](https://crate.io/packages/sb-pseudonymization/)
+[![PyPI version](https://img.shields.io/pypi/v/ssb-pseudonymization.svg)](https://pypi.python.org/pypi/ssb-pseudonymization/)
+[![Status](https://img.shields.io/pypi/status/ssb-pseudonymization.svg)](https://pypi.python.org/pypi/ssb-pseudonymization/)
+[![License](https://img.shields.io/pypi/l/ssb-pseudonymization.svg)](https://pypi.python.org/pypi/ssb-pseudonymization/)
+
 
 Pseudonymization is a data management and de-identification procedure by which personally identifiable information fields within a data record are replaced by one or more artificial identifiers, or pseudonyms. A single pseudonym for each replaced field or collection of replaced fields makes the data record less identifiable while remaining suitable for data analysis and data processing.
 
@@ -31,29 +33,28 @@ A pseudo function accepts a config dictionary and a value argument to be pseudon
 ```python
 from ssb_pseudonymization.func import fpe
 
-config = {
+func_config = {
     'key': 'some-secret-key', 
     'alphabet': string.ascii_letters + ' '
 }
 
-p = fpe.apply(config, 'Ken sent me')
+p = fpe.apply(func_config, 'Ken sent me')
 # p = 'fMLzJCeVJfP'
 ```
 
 ### Invoking a function in a generic way
 
-To invoke a pseudo function through a pseudo facade in a more generic way, you can do:
+To invoke a pseudo function in a more generic way, you can use the `pseudo_func` facade:
 
 ```python
 from ssb_pseudonymization import pseudo_func
-import json
 
-config_json = json.dumps({
+func_config_json = json.dumps({
     'func': 'fpe',
     'key': 'some-secret-key', 
     'alphabet': string.ascii_letters + ' '
 })
-p = pseudo_func.invoke(config, "Ken sent me")
+p = pseudo_func.invoke(func_config_json, "Ken sent me")
 # p = 'fMLzJCeVJfP'
 ```
 Notice that the config must be a json string and you must specify
